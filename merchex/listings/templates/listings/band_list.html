@@ -1,0 +1,33 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<section>
+    <h2>Bands</h2>
+
+    <a href="{% url 'band-create' %}">Create new Band</a>
+
+    <h4>My favourite bands are:</h4>
+
+    <ul>
+       {% for band in bands %}
+            <!-- Every name is a link to the detail view of the objet -->
+            <li>
+                <a href="{% url 'band-detail' band.id %}">{{ band.name }}</a>
+                - <a href="{% url 'band-update' band.id %}">[edit]</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        I have
+        {% if bands|length < 5 %}
+            some
+        {% else %}
+            many
+        {% endif %}
+            favourite bands
+    </p>
+</section>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<section>
+    <h2>{{ title.name }}</h2>
+
+    <ul>
+        <li>Band: <em>{{ title.band }}</em></li>
+        <li>Type: <em>{{ title.types }}</em></li>
+        <li>Year: <em>{{ title.year }}</em></li>
+        <li>Sold: <em>{{ title.sold|yesno }}</em></li>
+    </ul>
+
+    {% if title.description %}
+        <p>{{ title.description }}</p>
+    {% else %}
+        <p>Sorry! we are still processing the description.</p>
+    {% endif %}
+
+    <div>
+        <ul>
+            <li><a href="{% url 'listing-update' title.id %}">Edit this listing</a></li>
+            <li><a href="{% url 'listing-delete' title.id %}">Delete listing</a></li>
+        </ul>
+    </div>
+</section>
+
+{% endblock %}
